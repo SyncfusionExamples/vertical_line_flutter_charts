@@ -28,23 +28,23 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   _MyHomePageState() {
-    timer = Timer.periodic(const Duration(milliseconds: 100), (_timer) {
+    _timer = Timer.periodic(const Duration(milliseconds: 100), (_timer) {
       _start = _start.add(const Duration(minutes: 1));
       _end = _end.add(const Duration(minutes: 1));
-      index++;
+      _index++;
       setState(() {});
     });
   }
 
-  late List<ChartData> chartData;
-  Timer? timer;
-  int index = 0;
+  late List<ChartData> _chartData;
+  Timer? _timer;
+  int _index = 0;
   DateTime _start = DateTime.now();
   DateTime _end = DateTime.now();
 
   @override
   void initState() {
-    chartData = updateData(DateTime.now());
+    _chartData = updateData(DateTime.now());
     super.initState();
   }
 
@@ -67,21 +67,21 @@ class _MyHomePageState extends State<MyHomePage> {
                     series: <ChartSeries<ChartData, DateTime>>[
                       ColumnSeries<ChartData, DateTime>(
                           borderRadius: BorderRadius.circular(3),
-                          dataSource: chartData,
+                          dataSource: _chartData,
                           xValueMapper: (ChartData data, _) => data.x,
                           yValueMapper: (ChartData data, _) => data.y)
                     ]))));
   }
 
   List<ChartData> updateData(DateTime now) {
-    late List<ChartData> data = <ChartData>[];
+    late List<ChartData> _data = <ChartData>[];
     for (int i = 0; i < 12; i++) {
       i == 0
-          ? data.add(ChartData(now, _getRandomInt(10, 50)))
-          : data.add(ChartData(data.last.x.add(const Duration(hours: 1)),
+          ? _data.add(ChartData(now, _getRandomInt(10, 50)))
+          : _data.add(ChartData(_data.last.x.add(const Duration(hours: 1)),
               _getRandomInt(10, 50)));
     }
-    return data;
+    return _data;
   }
 
   int _getRandomInt(int min, int max) {
