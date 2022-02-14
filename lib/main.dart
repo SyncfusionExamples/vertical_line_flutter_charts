@@ -74,19 +74,19 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   List<ChartData> updateData(DateTime now) {
-    late List<ChartData> _data = <ChartData>[];
+    late List<ChartData> data = <ChartData>[];
     for (int i = 0; i < 12; i++) {
       i == 0
-          ? _data.add(ChartData(now, _getRandomInt(10, 50)))
-          : _data.add(ChartData(_data.last.x.add(const Duration(hours: 1)),
+          ? data.add(ChartData(now, _getRandomInt(10, 50)))
+          : data.add(ChartData(data.last.x.add(const Duration(hours: 1)),
               _getRandomInt(10, 50)));
     }
-    return _data;
+    return data;
   }
 
   int _getRandomInt(int min, int max) {
-    final Random _random = Random();
-    return min + _random.nextInt(max - min);
+    final Random random = Random();
+    return min + random.nextInt(max - min);
   }
 }
 
