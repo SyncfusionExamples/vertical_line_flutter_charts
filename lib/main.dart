@@ -28,23 +28,23 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   _MyHomePageState() {
-    timer = Timer.periodic(const Duration(milliseconds: 100), (_timer) {
+    _timer = Timer.periodic(const Duration(milliseconds: 100), (_timer) {
       _start = _start.add(const Duration(minutes: 1));
       _end = _end.add(const Duration(minutes: 1));
-      index++;
+      _index++;
       setState(() {});
     });
   }
 
-  late List<ChartData> chartData;
-  Timer? timer;
-  int index = 0;
+  late List<ChartData> _chartData;
+  Timer? _timer;
+  int _index = 0;
   DateTime _start = DateTime.now();
   DateTime _end = DateTime.now();
 
   @override
   void initState() {
-    chartData = updateData(DateTime.now());
+    _chartData = updateData(DateTime.now());
     super.initState();
   }
 
@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     series: <ChartSeries<ChartData, DateTime>>[
                       ColumnSeries<ChartData, DateTime>(
                           borderRadius: BorderRadius.circular(3),
-                          dataSource: chartData,
+                          dataSource: _chartData,
                           xValueMapper: (ChartData data, _) => data.x,
                           yValueMapper: (ChartData data, _) => data.y)
                     ]))));
@@ -85,8 +85,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   int _getRandomInt(int min, int max) {
-    final Random _random = Random();
-    return min + _random.nextInt(max - min);
+    final Random random = Random();
+    return min + random.nextInt(max - min);
   }
 }
 
