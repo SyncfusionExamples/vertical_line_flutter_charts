@@ -31,14 +31,14 @@ class _MyHomePageState extends State<MyHomePage> {
     _timer = Timer.periodic(const Duration(milliseconds: 100), (_timer) {
       _start = _start.add(const Duration(minutes: 1));
       _end = _end.add(const Duration(minutes: 1));
-      _index++;
       setState(() {});
     });
   }
 
   late List<ChartData> _chartData;
+  // ignore: unused_field
   Timer? _timer;
-  int _index = 0;
+
   DateTime _start = DateTime.now();
   DateTime _end = DateTime.now();
 
