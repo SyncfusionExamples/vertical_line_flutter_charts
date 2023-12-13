@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           borderWidth: 3,
                           borderColor: Colors.red)
                     ]),
-                    series: <ChartSeries<ChartData, DateTime>>[
+                    series: <ColumnSeries<ChartData, DateTime>>[
                       ColumnSeries<ChartData, DateTime>(
                           borderRadius: BorderRadius.circular(3),
                           dataSource: _chartData,
